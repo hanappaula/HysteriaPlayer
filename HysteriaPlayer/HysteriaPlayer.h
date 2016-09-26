@@ -52,6 +52,7 @@ typedef NS_ENUM(NSInteger, HysteriaPlayerFailed) {
 - (void)hysteriaPlayerCurrentItemPreloaded:(CMTime)time;
 - (void)hysteriaPlayerDidFailed:(HysteriaPlayerFailed)identifier error:(NSError *)error;
 - (void)hysteriaPlayerReadyToPlay:(HysteriaPlayerReadyToPlay)identifier;
+- (void)hysteriaPlayerRouteChanged;
 
 - (void)hysteriaPlayerItemFailedToPlayEndTime:(AVPlayerItem *)item error:(NSError *)error;
 - (void)hysteriaPlayerItemPlaybackStall:(AVPlayerItem *)item;
@@ -135,9 +136,9 @@ typedef NS_ENUM(NSInteger, HysteriaPlayerShuffleMode) {
 - (void)setItemsCount:(NSInteger)count DEPRECATED_MSG_ATTRIBUTE("use HysteriaPlayerDataSource instead.");
 
 /**
- *   This method is necessary if you implement hysteriaPlayerAsyncSetUrlForItemAtIndex:preBuffer: delegate method, 
-     provide source URL to HysteriaPlayer.
-     Should not use this method outside of hysteriaPlayerAsyncSetUrlForItemAtIndex:preBuffer: scope.
+ *   This method is necessary if you implement hysteriaPlayerAsyncSetUrlForItemAtIndex:preBuffer: delegate method,
+ provide source URL to HysteriaPlayer.
+ Should not use this method outside of hysteriaPlayerAsyncSetUrlForItemAtIndex:preBuffer: scope.
  *
  *  @param url   source URL
  *  @param index index which hysteriaPlayerAsyncSetUrlForItemAtIndex:preBuffer: sent you
@@ -161,6 +162,8 @@ typedef NS_ENUM(NSInteger, HysteriaPlayerShuffleMode) {
 - (void)playNext;
 - (void)seekToTime:(double) CMTime;
 - (void)seekToTime:(double) CMTime withCompletionBlock:(void (^)(BOOL finished))completionBlock;
+- (void)mute:(BOOL)mute;
+- (BOOL)isMuted;
 
 - (void)setPlayerRepeatMode:(HysteriaPlayerRepeatMode)mode;
 - (HysteriaPlayerRepeatMode)getPlayerRepeatMode;
@@ -201,4 +204,3 @@ typedef NS_ENUM(NSInteger, HysteriaPlayerShuffleMode) {
 - (void)deprecatePlayer;
 
 @end
-
